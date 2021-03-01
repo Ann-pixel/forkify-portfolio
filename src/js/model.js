@@ -20,5 +20,6 @@ export async function loadRecipe(id) {
     };
   } catch (err) {
     console.log(`${err} 🎃`);
+    throw err;
   }
 }

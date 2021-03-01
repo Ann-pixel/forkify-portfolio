@@ -20,7 +20,7 @@ async function controlRecipe() {
     //rendering recipe----
     recipeView.render(model.state.recipe);
   } catch (err) {
-    alert(err);
+    recipeView.renderError();
   }
 }
 
