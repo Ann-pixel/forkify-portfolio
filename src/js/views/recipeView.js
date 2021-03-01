@@ -23,6 +23,11 @@ class RecipeView {
     this.#parentElement.innerHTML = "";
     this.#parentElement.insertAdjacentHTML("afterbegin", markup);
   }
+  addHandlerRender(handler) {
+    ["hashchange", "load"].forEach((evt) =>
+      window.addEventListener(evt, handler)
+    );
+  }
   #generateMarkup() {
     return `
     <figure class="recipe__fig">
