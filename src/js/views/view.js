@@ -11,7 +11,33 @@ export default class View {
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
+  update(data) {
+    this._data = data;
+    const newMarkup = this._generateMarkup();
 
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll("*"));
+    const currentElements = Array.from(
+      this._parentElement.querySelectorAll("*")
+    );
+    newElements.forEach((newEl, idx) => {
+      const curEl = currentElements[idx];
+
+      //Update changed TEXT!!!
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ""
+      ) {
+        curEl.textContent = newEl.textContent;
+      }
+      //Updates changed ATTRIBUTES-- eg- dataset. so we can keep moving b/n servings
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach((attribute) => {
+          curEl.setAttribute(attribute.name, attribute.value);
+        });
+      }
+    });
+  }
   _clear() {
     this._parentElement.innerHTML = "";
   }
