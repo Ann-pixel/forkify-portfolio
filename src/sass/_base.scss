@@ -14,7 +14,7 @@ $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
 $bp-large: 78.15em; // 1250px
 $bp-medium: 61.25em; // 980px
 $bp-small: 37.5em; // 600px
-$bp-smallest: 31.25em; // 500px
+$bp-smallest: 28.75em; // 460px
 
 * {
   margin: 0;
@@ -35,7 +35,10 @@ html {
     font-size: 50%;
   }
   @media only screen and (max-width: $bp-small) {
-    font-size: 35%;
+    font-size: 40%;
+  }
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 25%;
   }
 }
 
